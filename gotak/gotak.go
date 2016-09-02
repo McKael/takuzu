@@ -41,12 +41,10 @@ func newTakuzuGameBoard(size int, simple bool, jobs int, buildBoardTimeout, redu
 }
 
 func main() {
-	var game string
-
 	vbl := flag.Uint([]string{"-vl"}, 0, "Verbosity Level")
 	simple := flag.Bool([]string{"-simple"}, false, "Only look for trivial solutions")
 	out := flag.Bool([]string{"-out"}, false, "Send solution string to output")
-	flag.StringVar(&game, []string{"-game"}, "", "Load game string")
+	board := flag.String([]string{"-board"}, "", "Load board string")
 	schrodLvl := flag.Uint([]string{"-x-sl"}, 0, "[Advanced] Schrödinger level")
 	resolveTimeout := flag.Duration([]string{"-x-timeout"}, 0, "[Advanced] Resolution timeout")
 	buildBoardTimeout := flag.Duration([]string{"-x-build-timeout"}, 5*time.Minute, "[Advanced] Build timeout per resolution")
@@ -67,9 +65,9 @@ func main() {
 
 	var tak *takuzu.Takuzu
 
-	if game != "" {
+	if *board != "" {
 		var err error
-		tak, err = takuzu.NewFromString(game)
+		tak, err = takuzu.NewFromString(*board)
 		if tak == nil || err != nil {
 			fmt.Fprintln(os.Stderr, "Error:", err)
 			tak = nil
