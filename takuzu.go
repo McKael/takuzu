@@ -40,11 +40,16 @@ func New(size int) Takuzu {
 // NewFromString creates a new Takuzu board from a string definition
 func NewFromString(s string) (*Takuzu, error) {
 	l := len(s)
-	// TODO: validate chars ([.01OI])
+	if l < 4 {
+		return nil, errors.New("bad string length")
+	}
+
 	size := int(math.Sqrt(float64(l)))
 	if size*size != l {
 		return nil, errors.New("bad string length")
 	}
+
+	// TODO: validate chars ([.01OI])
 
 	i := 0
 	t := New(size)
@@ -117,11 +122,18 @@ func Copy(src, dst *Takuzu) error {
 func BoardsMatch(t1, t2 *Takuzu, ignoreUndefined bool) (match bool, line, col int) {
 	match = true
 
+	if t1 == nil || t2 == nil {
+		line, col = -1, -1
+		match = false
+		return
+	}
+
 	if t1.Size != t2.Size {
 		line, col = -1, -1
 		match = false
 		return
 	}
+
 	for line = range t1.Board {
 		for col = range t1.Board[line] {
 			if !t1.Board[line][col].Defined || !t2.Board[line][col].Defined {
