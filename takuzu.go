@@ -322,7 +322,7 @@ func (b Takuzu) Validate() (bool, error) {
 		if full {
 			hv := computeVal(d)
 			if colVals[hv] {
-				return false, fmt.Errorf("duplicate colums (%d)", i)
+				return false, fmt.Errorf("duplicate columns (%d)", i)
 			}
 			colVals[hv] = true
 		} else {
