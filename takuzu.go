@@ -421,6 +421,24 @@ func (b Takuzu) guessPos(l, c int) int {
 	return -1 // dunno
 }
 
+// TrivialHint returns the coordinates and the value of the first cell that
+// can be guessed using trivial methods.
+// It returns {-1, -1, -1} if none can be found.
+func (b Takuzu) TrivialHint() (line, col, value int) {
+	for line = 0; line < b.Size; line++ {
+		for col = 0; col < b.Size; col++ {
+			if b.Board[line][col].Defined {
+				continue
+			}
+			if value = b.guessPos(line, col); value != -1 {
+				return
+			}
+		}
+	}
+	value, line, col = -1, -1, -1
+	return
+}
+
 // trySolveTrivialPass does 1 pass over the takuzu board and tries to find
 // values using simple guesses.
 func (b Takuzu) trySolveTrivialPass() (changed bool) {
