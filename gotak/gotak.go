@@ -142,6 +142,10 @@ func main() {
 		}
 		if !full {
 			tak.DumpBoard()
+			fmt.Println()
+			if *out {
+				tak.DumpString()
+			}
 			log.Println("The takuzu could not be completed using trivial methods.")
 			os.Exit(2)
 		}
