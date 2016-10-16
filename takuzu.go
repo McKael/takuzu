@@ -1,3 +1,9 @@
+// Copyright (C) 2016 Mikael Berthe <mikael@lilotux.net>. All rights reserved.
+// Use of this source code is governed by the MIT license,
+// which can be found in the LICENSE file.
+
+// Package takuzu provides functions to solve, build or validate takuzu
+// puzzles.
 package takuzu
 
 import (

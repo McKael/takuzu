@@ -1,4 +1,11 @@
+// Copyright (C) 2016 Mikael Berthe <mikael@lilotux.net>. All rights reserved.
+// Use of this source code is governed by the MIT license,
+// which can be found in the LICENSE file.
+
 package takuzu
+
+// This file contains the functions and methods used to build a new takuzu
+// puzzle.
 
 import (
 	"fmt"
