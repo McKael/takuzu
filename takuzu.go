@@ -377,7 +377,9 @@ func checkRange(cells []Cell) (bool, error) {
 	return full, nil
 }
 
-func checkRangeCounts(cells []Cell) (full bool, n0, n1 int) {
+// CheckRangeCounts returns true if all cells of the provided range are defined,
+// as well as the number of 0s and the number of 1s in the range.
+func CheckRangeCounts(cells []Cell) (full bool, n0, n1 int) {
 	counters := []int{0, 0}
 	full = true
 
