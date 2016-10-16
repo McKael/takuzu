@@ -2,6 +2,8 @@
 // Use of this source code is governed by the MIT license,
 // which can be found in the LICENSE file.
 
+// gotak is a CLI wrapper for the takuzu package.
+
 package main
 
 import (
@@ -12,7 +14,7 @@ import (
 
 	flag "github.com/docker/docker/pkg/mflag"
 
-	"mikael/takuzu"
+	"hg.lilotux.net/golang/mikael/takuzu"
 )
 
 var verbosity int

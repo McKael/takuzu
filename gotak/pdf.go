@@ -10,7 +10,7 @@ import (
 	"github.com/jung-kurt/gofpdf"
 	"github.com/pkg/errors"
 
-	"mikael/takuzu"
+	"hg.lilotux.net/golang/mikael/takuzu"
 )
 
 func tak2pdf(takuzu *takuzu.Takuzu, pdfFileName string) error {
