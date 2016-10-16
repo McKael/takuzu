@@ -1,10 +1,6 @@
 package takuzu
 
-import (
-	"fmt"
-
-	"github.com/pkg/errors"
-)
+// This file contains the takuzu validation functions and methods.
 
 // checkRange returns true if the range is completely defined, and an error
 // if it doesn't follow the rules for a takuzu line or column
@@ -31,7 +27,11 @@ func checkRange(cells []Cell) (bool, error) {
 			if c.Value == prevCell.Value {
 				prevCellCount++
 				if prevCellCount > 2 {
-					return full, errors.Errorf("3+ same values %d", c.Value)
+					v := c.Value
+					return full, validationError{
+						ErrorType: ErrorTooManyAdjacentValues,
+						CellValue: &v,
+					}
 				}
 			} else {
 				prevCellCount = 1
@@ -41,10 +41,18 @@ func checkRange(cells []Cell) (bool, error) {
 		prevCell = c
 	}
 	if counters[0] > size/2 {
-		return full, errors.Errorf("too many zeroes")
+		v := 0
+		return full, validationError{
+			ErrorType: ErrorTooManyValues,
+			CellValue: &v,
+		}
 	}
 	if counters[1] > size/2 {
-		return full, errors.Errorf("too many ones")
+		v := 1
+		return full, validationError{
+			ErrorType: ErrorTooManyValues,
+			CellValue: &v,
+		}
 	}
 	return full, nil
 }
@@ -101,12 +109,18 @@ func (b Takuzu) Validate() (bool, error) {
 		d = b.GetLine(i)
 		full, err = checkRange(d)
 		if err != nil {
-			return false, errors.Wrapf(err, "line %d", i)
+			err := err.(validationError)
+			err.LineNumber = &i
+			return false, err
 		}
 		if full {
 			hv := computeVal(d)
 			if lineVals[hv] {
-				return false, fmt.Errorf("duplicate lines (%d)", i)
+				err := validationError{
+					ErrorType:  ErrorDuplicate,
+					LineNumber: &i,
+				}
+				return false, err
 			}
 			lineVals[hv] = true
 		} else {
@@ -117,12 +131,18 @@ func (b Takuzu) Validate() (bool, error) {
 		d = b.GetColumn(i)
 		full, err = checkRange(d)
 		if err != nil {
-			return false, errors.Wrapf(err, "column %d", i)
+			err := err.(validationError)
+			err.ColumnNumber = &i
+			return false, err
 		}
 		if full {
 			hv := computeVal(d)
 			if colVals[hv] {
-				return false, fmt.Errorf("duplicate columns (%d)", i)
+				err := validationError{
+					ErrorType:    ErrorDuplicate,
+					ColumnNumber: &i,
+				}
+				return false, err
 			}
 			colVals[hv] = true
 		} else {
