@@ -12,7 +12,7 @@ import (
 	"os"
 	"time"
 
-	flag "github.com/docker/docker/pkg/mflag"
+	"github.com/spf13/pflag"
 
 	"hg.lilotux.net/golang/mikael/takuzu"
 )
@@ -47,23 +47,23 @@ func newTakuzuGameBoard(size int, simple bool, jobs int, buildBoardTimeout, redu
 }
 
 func main() {
-	vbl := flag.Uint([]string{"-vl"}, 0, "Verbosity Level")
-	simple := flag.Bool([]string{"-simple"}, false, "Only look for trivial solutions")
-	out := flag.Bool([]string{"-out"}, false, "Send solution string to output")
-	board := flag.String([]string{"-board"}, "", "Load board string")
-	schrodLvl := flag.Uint([]string{"-x-sl"}, 0, "[Advanced] Schrödinger level")
-	resolveTimeout := flag.Duration([]string{"-x-timeout"}, 0, "[Advanced] Resolution timeout")
-	buildBoardTimeout := flag.Duration([]string{"-x-build-timeout"}, 5*time.Minute, "[Advanced] Build timeout per resolution")
-	reduceBoardTimeout := flag.Duration([]string{"-x-reduce-timeout"}, 20*time.Minute, "[Advanced] Reduction timeout")
-	buildMinRatio := flag.Uint([]string{"-x-new-min-ratio"}, 55, "[Advanced] Build empty cell ratio (40-60)")
-	buildMaxRatio := flag.Uint([]string{"-x-new-max-ratio"}, 62, "[Advanced] Build empty cell ratio (50-99)")
-	all := flag.Bool([]string{"-all"}, false, "Look for all possible solutions")
-	reduce := flag.Bool([]string{"-reduce"}, false, "Try to reduce the number of digits")
-	buildNewSize := flag.Uint([]string{"-new"}, 0, "Build a new takuzu board (with given size)")
-	pdfFileName := flag.String([]string{"-to-pdf"}, "", "PDF output file name")
-	workers := flag.Uint([]string{"-workers"}, 1, "Number of parallel workers (use with --new)")
+	vbl := pflag.Uint("vl", 0, "Verbosity Level")
+	simple := pflag.Bool("simple", false, "Only look for trivial solutions")
+	out := pflag.Bool("out", false, "Send solution string to output")
+	board := pflag.String("board", "", "Load board string")
+	schrodLvl := pflag.Uint("x-sl", 0, "[Advanced] Schrödinger level")
+	resolveTimeout := pflag.Duration("x-timeout", 0, "[Advanced] Resolution timeout")
+	buildBoardTimeout := pflag.Duration("x-build-timeout", 5*time.Minute, "[Advanced] Build timeout per resolution")
+	reduceBoardTimeout := pflag.Duration("x-reduce-timeout", 20*time.Minute, "[Advanced] Reduction timeout")
+	buildMinRatio := pflag.Uint("x-new-min-ratio", 55, "[Advanced] Build empty cell ratio (40-60)")
+	buildMaxRatio := pflag.Uint("x-new-max-ratio", 62, "[Advanced] Build empty cell ratio (50-99)")
+	all := pflag.Bool("all", false, "Look for all possible solutions")
+	reduce := pflag.Bool("reduce", false, "Try to reduce the number of digits")
+	buildNewSize := pflag.Uint("new", 0, "Build a new takuzu board (with given size)")
+	pdfFileName := pflag.String("to-pdf", "", "PDF output file name")
+	workers := pflag.Uint("workers", 1, "Number of parallel workers (use with --new)")
 
-	flag.Parse()
+	pflag.Parse()
 
 	verbosity = int(*vbl)
 	takuzu.SetVerbosityLevel(verbosity)
