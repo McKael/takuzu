@@ -28,6 +28,9 @@ go get github.com/McKael/takuzu/gotak
 
 (If you use the Mercurial repository, you have to update the import path manually.)
 
+Pre-built binaries are available on the
+[Github Release page](https://github.com/McKael/takuzu/releases).
+
 # Online puzzle demo
 
 This library is used by GotakJS, an [online takuzu puzzle game](https://lilotux.net/~mikael/takuzu/),
