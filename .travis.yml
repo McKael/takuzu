@@ -14,3 +14,5 @@ branches:
   - master
 install:
 - go get github.com/spf13/pflag
+- go get github.com/pkg/errors
+- go get github.com/jung-kurt/gofpdf

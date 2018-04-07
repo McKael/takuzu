@@ -14,7 +14,7 @@ import (
 
 	"github.com/spf13/pflag"
 
-	"hg.lilotux.net/golang/mikael/takuzu"
+	"github.com/McKael/takuzu"
 )
 
 var verbosity int

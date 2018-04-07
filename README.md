@@ -12,7 +12,7 @@ provides functions to solve, build or validate takuzu puzzles.
 - Mercurial repository: https://hg.lilotux.net/golang/mikael/takuzu/
 - Github mirror: https://github.com/McKael/takuzu/
 
-Please read the [godoc documentation]](https://godoc.org/github.com/McKael/takuzu) for details.
+Please read the [godoc documentation](https://godoc.org/github.com/McKael/takuzu) for details.
 
 # CLI demo
 
@@ -23,10 +23,10 @@ I haven't written the tool documentation yet.
 To build the gotak CLI utility, you can use
 
 ```
-go get https://hg.lilotux.net/golang/mikael/takuzu/gotak
+go get github.com/takuzu/gotak
 ```
 
-(If you use the Github mirror, you'll have to update the import path manually.)
+(If you use the Mercurial repository, you have to update the import path manually.)
 
 # Online puzzle demo
 
