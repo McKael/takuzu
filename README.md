@@ -23,7 +23,7 @@ I haven't written the tool documentation yet.
 To build the gotak CLI utility, you can use the following command (with Go 1.8+):
 
 ```
-go get github.com/takuzu/gotak
+go get github.com/McKael/takuzu/gotak
 ```
 
 (If you use the Mercurial repository, you have to update the import path manually.)
