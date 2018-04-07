@@ -31,5 +31,5 @@ go get github.com/takuzu/gotak
 # Online puzzle demo
 
 This library is used by GotakJS, an [online takuzu puzzle game](https://lilotux.net/~mikael/takuzu/),
-written in Go using [GopehJS](https://github.com/gopherjs/gopherjs).
+written in Go using [GopherJS](https://github.com/gopherjs/gopherjs).
 (On mobile, works best with Chrome.  On a computer, I've tested it with both Firefox and Chrome.)
