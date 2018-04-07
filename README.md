@@ -14,9 +14,21 @@ provides functions to solve, build or validate takuzu puzzles.
 
 Please read the [godoc documentation]](https://godoc.org/github.com/McKael/takuzu) for details.
 
+# CLI demo
+
 This project also contains a command line utility, named `gotak`, to solve or
 generate puzzles.
 I haven't written the tool documentation yet.
+
+To build the gotak CLI utility, you can use
+
+```
+go get https://hg.lilotux.net/golang/mikael/takuzu/gotak
+```
+
+(If you use the Github mirror, you'll have to update the import path manually.)
+
+# Online puzzle demo
 
 This library is used by GotakJS, an [online takuzu puzzle game](https://lilotux.net/~mikael/takuzu/),
 written in Go using [GopehJS](https://github.com/gopherjs/gopherjs).
