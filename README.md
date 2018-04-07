@@ -20,7 +20,7 @@ This project also contains a command line utility, named `gotak`, to solve or
 generate puzzles.
 I haven't written the tool documentation yet.
 
-To build the gotak CLI utility, you can use
+To build the gotak CLI utility, you can use the following command (with Go 1.8+):
 
 ```
 go get github.com/takuzu/gotak
