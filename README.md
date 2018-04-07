@@ -31,6 +31,49 @@ go get github.com/McKael/takuzu/gotak
 Pre-built binaries are available on the
 [Github Release page](https://github.com/McKael/takuzu/releases).
 
+The utility was written for personal use and is not very user-friendly, but it
+should be reasonably efficient (I've been able to generate boards up to 50x50).
+Here are a few examples to get started:
+
+Build new 6x6 puzzle:
+```
+% gotak --new 6
+
+. . . . . .
+0 . . . . 0
+. . 1 . . .
+. . . . 1 .
+1 . 0 0 . .
+1 . . . . .
+```
+
+Solve the board:
+```
+% gotak --board ......0....0..1.......1.1.00..1.....
+
+. . . . . .
+0 . . . . 0
+. . 1 . . .
+. . . . 1 .
+1 . 0 0 . .
+1 . . . . .
+
+
+0 1 1 0 0 1
+0 1 0 1 1 0
+1 0 1 1 0 0
+0 0 1 0 1 1
+1 1 0 0 1 0
+1 0 0 1 0 1
+```
+
+(You can get the board string with the `--out` flag when generating new puzzles.)
+
+Create a PDF with a takuzu puzzle:
+```
+% gotak --new 10 --to-pdf /tmp/takuzu.pdf
+```
+
 # Online puzzle demo
 
 This library is used by GotakJS, an [online takuzu puzzle game](https://lilotux.net/~mikael/takuzu/),
