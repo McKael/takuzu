@@ -96,11 +96,9 @@ func (b Takuzu) TrySolveTrivial() (bool, error) {
 	for {
 		changed := b.trySolveTrivialPass()
 		if verbosity > 3 {
-			var status string
+			status := "stuck"
 			if changed {
 				status = "ongoing"
-			} else {
-				status = "stuck"
 			}
 			log.Println("Trivial resolution -", status)
 		}

@@ -76,7 +76,7 @@ func (b Takuzu) ToString() string {
 	for line := 0; line < b.Size; line++ {
 		for col := 0; col < b.Size; col++ {
 			if b.Board[line][col].Defined {
-				sbuf.WriteString(fmt.Sprintf("%d", b.Board[line][col].Value))
+				fmt.Fprintf(&sbuf, "%d", b.Board[line][col].Value)
 				continue
 			}
 			sbuf.WriteByte('.')
@@ -94,9 +94,7 @@ func (b Takuzu) DumpString() {
 func (b Takuzu) Clone() Takuzu {
 	c := New(b.Size)
 	for line := range b.Board {
-		for col := range b.Board[line] {
-			c.Board[line][col] = b.Board[line][col]
-		}
+		copy(c.Board[line], b.Board[line])
 	}
 	return c
 }
@@ -107,9 +105,7 @@ func Copy(src, dst *Takuzu) error {
 		return errors.New("sizes do not match")
 	}
 	for line := range src.Board {
-		for col := range src.Board[line] {
-			dst.Board[line][col] = src.Board[line][col]
-		}
+		copy(dst.Board[line], src.Board[line])
 	}
 	return nil
 }
@@ -168,12 +164,7 @@ func (c *Cell) Set(value int) {
 // Set sets the value of a specific cell
 // A value -1 will undefine the cell
 func (b Takuzu) Set(l, c, value int) {
-	if value != 0 && value != 1 {
-		b.Board[l][c].Defined = false
-		return
-	}
-	b.Board[l][c].Defined = true
-	b.Board[l][c].Value = value
+	b.Board[l][c].Set(value)
 }
 
 // GetLine returns a slice of cells containing the ith line of the board

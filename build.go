@@ -16,10 +16,6 @@ import (
 	"github.com/pkg/errors"
 )
 
-func init() {
-	rand.Seed(time.Now().UTC().UnixNano())
-}
-
 type buildTakuzuOptions struct {
 	size                                  int
 	minRatio, maxRatio                    int
